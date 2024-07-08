@@ -1,6 +1,7 @@
-import random #type: ignore
-from support import print_message as pm #type: ignore
-        
+import random  # type: ignore
+from tools import print_message as pm  # type: ignore
+
+
 class RPS:
     def __init__(self):
         self.name = "Rock, Paper, Scissors"
@@ -21,7 +22,7 @@ class RPS:
 
     def game_loop(self):
         pm(self.name, 3, 1)
-        pm("Hello! Welcome the game!",2,1)
+        pm("Hello! Welcome the game!", 2, 1)
         pm("Your choices are: rock, paper, scissors", 2, 1)
         while self.playing:
             self.computer_choice = random.choice(self.choices)
@@ -46,10 +47,3 @@ class RPS:
                     pm("Computer Wins!", 2, 1)
                     pm("Get gud", 2, 1)
                 self.playing = False
-
-
-
-
-
-
-        

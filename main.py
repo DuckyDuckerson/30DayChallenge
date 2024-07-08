@@ -1,7 +1,7 @@
 from rps import RPS  # type: ignore
 from hangman import Hangman  # type: ignore
 from tictactoe import TicTacToe  # type: ignore
-from support import print_message as pm
+from tools import print_message as pm
 
 
 rps = RPS()
@@ -11,6 +11,7 @@ games = [rps, hangman, tictactoe]
 
 
 def main():
+
     pm("Welcome to the Games console! What game would you like to play?", 2, 1)
 
     i = 1

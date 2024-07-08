@@ -1,6 +1,6 @@
 import random
 from hangman_art import stages
-from support import print_message as pm
+from tools import print_message as pm
 from getpass import getpass as gp
 # TODO: handle repeated guesses
 # ensure guess is one letter
@@ -24,7 +24,7 @@ class Hangman:
     def game_loop(self):
         pm(self.name, 3, 1)
         secret_word = gp("Enter word: ")
-        
+
         duplicates = {}
         for i in range(len(secret_word)):
             for letter in secret_word:

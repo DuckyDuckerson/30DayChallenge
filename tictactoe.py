@@ -1,8 +1,4 @@
-#ASCII for x's and o's
-#player vs player
-#player input (numbering out the grid)
-#check if player won/loss
-from support import print_message as pm
+from tools import print_message as pm
 from test import board
 
 class TicTacToe:
