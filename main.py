@@ -8,8 +8,6 @@ hangman = Hangman()
 tictactoe = TicTacToe()
 games = [rps, hangman, tictactoe]
 
-# this is a test
-
 
 def main():
     pm("Welcome to the Games console! What game would you like to play?", 2, 1)
