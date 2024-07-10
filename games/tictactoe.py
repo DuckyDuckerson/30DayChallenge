@@ -26,8 +26,6 @@ _____|_____|_____
   7  |  8  |  9  
      |     |  
 """
-    # create exit game func that resets everything to defaults
-    # not sure why it wouldnt exit before. I think maybe because self.turn was still set but idk
     def exit_game(self):
         self.playing = False
         self.turn = None
@@ -95,7 +93,6 @@ _____|_____|_____
             else:
                 pm("It's A Draw!", 2, 1)
 
-            # call exit game instead of just setting self.playing to False
             self.exit_game()
             
 

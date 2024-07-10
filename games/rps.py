@@ -1,5 +1,5 @@
-import random  # type: ignore
-from tools import print_message as pm  # type: ignore
+import random 
+from tools import print_message as pm 
 
 
 class RPS:

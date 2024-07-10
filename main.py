@@ -1,9 +1,7 @@
 from games import Hangman, RPS, TicTacToe
 from tools import print_message as pm
 
-# updated import statement to import all three classes from games pkg
-# also updaded pyproject.toml to ignore the import error warnings
-# no more squiggly lines lol
+
 rps = RPS()
 hangman = Hangman()
 tictactoe = TicTacToe()

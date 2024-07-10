@@ -2,9 +2,7 @@ import random
 from .hangman_art import stages
 from tools import print_message as pm
 from getpass import getpass as gp
-# TODO: handle repeated guesses
-# ensure guess is one letter
-# add 'solve' option - either by entering "solve" or just by typing out the whole word?
+
 
 
 class Hangman:
@@ -25,10 +23,7 @@ class Hangman:
 
     def game_loop(self):
         pm(self.name, 3, 1)
-        # something about the c code isnt working when the secret word is put in
-        # thought it was the hidden functionality but input didnt work either
         secret_word = gp("Enter word: ")
-        #secret_word = input("Enter Word: ")
 
         duplicates = {}
         for i in range(len(secret_word)):
@@ -42,7 +37,7 @@ class Hangman:
         guessed_letters = []
         token = []
 
-        for letter in secret_word:  #type: ignore
+        for letter in secret_word: #type: ignore
             token.append("_")
 
         pm(token, 1, 1)
