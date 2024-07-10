@@ -26,6 +26,26 @@ _____|_____|_____
   7  |  8  |  9  
      |     |  
 """
+    # create exit game func that resets everything to defaults
+    # not sure why it wouldnt exit before. I think maybe because self.turn was still set but idk
+    def exit_game(self):
+        self.playing = False
+        self.turn = None
+        self.turn_num = 0
+        self.setup = False
+        self.player_one = Player("X")
+        self.player_two = Player("O")
+        self.board = """
+     |     |     
+  1  |  2  |  3  
+_____|_____|_____
+     |     |     
+  4  |  5  |  6  
+_____|_____|_____
+     |     |     
+  7  |  8  |  9  
+     |     |  
+"""
 
     
     def check_for_win(self):
@@ -74,8 +94,10 @@ _____|_____|_____
                 pm("Player Two Wins!", 2, 1)
             else:
                 pm("It's A Draw!", 2, 1)
+
+            # call exit game instead of just setting self.playing to False
+            self.exit_game()
             
-            self.playing = False
 
     
     def game_setup(self):
@@ -108,7 +130,10 @@ _____|_____|_____
                     continue
 
                 self.check_for_win()
-    
+                self.turn_num += 1
+                if self.turn_num == 9:
+                    self.game_over("Draw")
+                    
             while self.turn == self.player_two:
                 player2_input = input('P2: Choose a square\n~: ')
                 if player2_input in self.board:
@@ -121,9 +146,10 @@ _____|_____|_____
 
                     
                 self.check_for_win()
-            self.turn_num += 1
-            if self.turn_num == 9:
-                self.game_over("Draw")
+                
+                self.turn_num += 1
+                if self.turn_num == 9:
+                    self.game_over("Draw")
 
 
 

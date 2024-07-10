@@ -1,5 +1,5 @@
 import random
-from hangman_art import stages
+from .hangman_art import stages
 from tools import print_message as pm
 from getpass import getpass as gp
 # TODO: handle repeated guesses
@@ -25,7 +25,10 @@ class Hangman:
 
     def game_loop(self):
         pm(self.name, 3, 1)
+        # something about the c code isnt working when the secret word is put in
+        # thought it was the hidden functionality but input didnt work either
         secret_word = gp("Enter word: ")
+        #secret_word = input("Enter Word: ")
 
         duplicates = {}
         for i in range(len(secret_word)):
