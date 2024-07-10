@@ -1,5 +1,3 @@
-import sys
-import time
 from compilation import compile_c_code
 import ctypes
 
