@@ -1,6 +1,6 @@
 import random
 from .hangman_art import stages
-from tools import print_message as pm
+from support.tools import print_message as pm
 from getpass import getpass as gp
 
 
@@ -24,6 +24,7 @@ class Hangman:
     def game_loop(self):
         pm(self.name, 3, 1)
         secret_word = gp("Enter word: ")
+        
 
         duplicates = {}
         for i in range(len(secret_word)):
@@ -39,8 +40,8 @@ class Hangman:
 
         for letter in secret_word: #type: ignore
             token.append("_")
-
-        pm(token, 1, 1)
+            
+        pm(f'{token}', 1, 1)
 
         while self.playing:
 
@@ -69,7 +70,7 @@ class Hangman:
                     f"You have guessed the following letters:\n{guessed_letters}",
                     3, 1)
 
-                pm(token, 2, 1)
+                pm(f'{token}', 2, 1)
                 tokenstr = "".join(token)
                 if tokenstr == secret_word:
                     pm('You win!', 1, 1)

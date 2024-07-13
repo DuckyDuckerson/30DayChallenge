@@ -1,5 +1,5 @@
 from games import Hangman, RPS, TicTacToe
-from tools import print_message as pm
+from support.tools import print_message as pm
 
 
 rps = RPS()
