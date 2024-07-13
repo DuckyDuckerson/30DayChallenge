@@ -5,6 +5,7 @@ from getpass import getpass as gp
 
 
 
+
 class Hangman:
 
     def __init__(self):
