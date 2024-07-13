@@ -22,4 +22,5 @@ list2.append(h)
 pm(f'{list2}', 2, 1)
 
 list2.pop(1)
-pm(list2, 2, 1)
+pm(f'{list2}', 2, 1)
+
