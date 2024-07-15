@@ -35,9 +35,9 @@ def display_menu(stdscr, options, menu_title="Menu"):
 
         key = stdscr.getch()
 
-        if key == curses.KEY_UP and current_selection > 0 or key in [ord('k'), ord('K')] and current_selection > 0:
+        if key == curses.KEY_UP and current_selection > 0 or key in [106, 75] and current_selection > 0:
             current_selection -= 1
-        elif key == curses.KEY_DOWN and current_selection < len(options) - 1 or key in [ord('j') and ord('J')] and current_selection <len(options):
+        elif key == curses.KEY_DOWN and current_selection < len(options) - 1 or key in [107, 74] and current_selection <len(options):
             current_selection += 1
         elif key == curses.KEY_ENTER or key in [10, 13]:
             return options[current_selection]
