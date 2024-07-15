@@ -39,6 +39,3 @@
 - handle repeated guesses in hangman
 - ensure guess is one letter in hangman
 - add 'solve' option - either by entering "solve" or just by typing out the whole word? in hangman
-
-
-# test test test

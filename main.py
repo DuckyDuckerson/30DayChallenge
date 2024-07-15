@@ -1,11 +1,11 @@
-from games import Hangman, RPS, TicTacToe, Pokemon
+from games import Hangman, RPS, TicTacToe, PokemonGame
 from support.tools import print_message as pm
 
 
 rps = RPS()
 hangman = Hangman()
 tictactoe = TicTacToe()
-pokemon = Pokemon()
+pokemon = PokemonGame()
 game_options = [rps, hangman, tictactoe, pokemon]
 
 
