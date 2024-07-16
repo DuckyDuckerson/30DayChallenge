@@ -1,16 +1,52 @@
 from support.compilation import compile_c_code
 import ctypes
 import curses
+import time
+import sys
 
-compile_c_code("support/support.c", "support/support.so")
-lib = ctypes.cdll.LoadLibrary("./support/support.so")
+# this is a test
 
-lib.print_message.argtypes = [ctypes.c_char_p, ctypes.c_int, ctypes.c_int]
-lib.print_message.restype = None
+# print("Compiling C code...")
+# compile_c_code("support/support.c", "support.so")
+# print("C code compiled successfully")
+# lib = ctypes.cdll.LoadLibrary("./support/support.so")
+#
+# lib.print_message.argtypes = [ctypes.c_char_p, ctypes.c_int, ctypes.c_int]
+# lib.print_message.restype = None
+#
+#
+# def print_message_c(message, speed, newline):
+#     lib.print_message(message.encode('utf-8'), speed, newline)
 
 
 def print_message(message, speed, newline):
-    lib.print_message(message.encode('utf-8'), speed, newline)
+
+    speed_map = {
+        1: .2,
+        2: .05,
+        3: .01,
+        4: .007
+    }
+
+    delay = speed_map[speed]
+
+    printing(0, message, delay)
+
+    if newline == 1:
+        print('\n')
+    else:
+        pass
+
+
+def printing(index, message, delay):
+
+    if index < len(message):
+        sys.stdout.write(message[index])
+        sys.stdout.flush()
+        time.sleep(delay)
+
+        printing(index + 1, message, delay)
+
 
 def display_menu(options, menu_title="Menu"):
     print(menu_title)
