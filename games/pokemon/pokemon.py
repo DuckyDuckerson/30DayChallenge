@@ -3,6 +3,8 @@ from support.tools import display_menu
 from support.tools import print_message as pm
 from .data import starter_pokemon as starters
 from .data import Pokemon
+from .PokeBattle import Battle
+
 
 class PokemonGame:
     def __init__(self):
@@ -12,7 +14,6 @@ class PokemonGame:
         self.inventory = []
         self.game_started = False
         self.player = None
-
 
     def main_game(self):
         options = ["Explore", "Pokemon Center", "Gym", "Pokedex"]
@@ -35,14 +36,15 @@ class PokemonGame:
         enemy  = Pokemon("Charmander", ["fire"], "Medium Slow",
                          ['Charmeleon'], ['Blaze', 'Solar Power'],
                          ['Growl'], 123, 2)
-        
-        self.battle(enemy)
 
-    def battle(self, enemy):
-        battle = Battle(enemy)
+        player_pokemon = self.team[0]
+
+        self.battle(enemy, player_pokemon)
+
+    def battle(self, enemy, player_pokemon):
+        battle = Battle(enemy, player_pokemon)
         battle.battle()
 
-    
     def center(self):
         pass
 
@@ -51,8 +53,7 @@ class PokemonGame:
 
     def pokedex(self):
         pass
-                
-        
+
     def start_menu(self):
         options = ["Start Game", "Load Game", "Exit",]
         menu_title = "Pokemon"
@@ -62,7 +63,7 @@ class PokemonGame:
         if choice == 0:
             self.game_started = True
             self.select_pokemon()
-            
+
     def select_pokemon(self):
         pm("Which pokemon would you like to select?", 2, 1)
         poke_options = [opt.get("name") for opt in starters]
@@ -81,16 +82,9 @@ class PokemonGame:
                                            option.get("xp"),
                                            1)
         self.team.append(starting_pokemon)
-    
+
     def game_loop(self):
         if not self.game_started:
             self.start_menu()
         else:
             self.main_game()
-
-class Battle:
-    def __init__(self, enemy):
-        pass
-
-    def battle(self):
-        pass

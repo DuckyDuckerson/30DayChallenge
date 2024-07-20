@@ -2,7 +2,7 @@ import random
 
 
 class Pokemon:
-    
+
     def __init__(self, name, types, xp_type, evols, abilities, moves, xp, initial_level):
         self.name = name
         self.types = types
@@ -14,14 +14,13 @@ class Pokemon:
         self.initial_level = initial_level
         self.stats = PokeMetrics(self.xp, self.initial_level)
 
+
 class PokeMetrics:
-    
+
     def __init__(self, xp, level):
         self.level = level
         self.xp = xp
         self.stats = self.stat_randomizer()
-        
-        
 
     def level_up(self, xp):
         self.level += 1
@@ -30,9 +29,9 @@ class PokeMetrics:
     def rand_stat_num(self):
         stat_rand = random.randint(self.level * 2, self.level * 4)
         return stat_rand
-  
+
     def stat_randomizer(self):
-    
+
         stats = {
             'hp': self.rand_stat_num(),
             'atk': self.rand_stat_num(),
@@ -48,7 +47,7 @@ starter_pokemon = [
     {
         'name': 'Bulbasaur',
         'types': ['grass', 'poison'],
-        'xp_type': 'Medium Slow',        
+        'xp_type': 'Medium Slow',
         'abilities': ['chlorophyll', 'overgrow'],
         'moves': ['Growl', 'Tackle'],
         'evols': ['Ivysaur'],
@@ -66,7 +65,7 @@ starter_pokemon = [
     {
         'name': 'Squirtle',
         'types': ['water'],
-        'xp_type': 'Medium Slow',        
+        'xp_type': 'Medium Slow',
         'abilities': ['Torrent', 'Rain Dish'],
         'moves': ['Tail Whip', 'Tackle'],
         'evols': ['Wartortle'],
