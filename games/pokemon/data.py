@@ -2,7 +2,8 @@ import random
 
 
 class Pokemon:
-    def __init__(self, name, types, xp_type, evols, abilities, moves, xp, level):
+    
+    def __init__(self, name, types, xp_type, evols, abilities, moves, xp, initial_level):
         self.name = name
         self.types = types
         self.xp_type = xp_type
@@ -10,20 +11,35 @@ class Pokemon:
         self.abilities = abilities
         self.moves = moves
         self.xp = xp
+        self.initial_level = initial_level
+        self.stats = PokeMetrics(self.xp, self.initial_level)
+
+class PokeMetrics:
+    
+    def __init__(self, xp, level):
         self.level = level
-        self.stats = self.stat_randomizer(self.level)
-
-
-    def stat_randomizer(self, level):
-        stat_rand = random.randint(level * 2, level * 4)
+        self.xp = xp
+        self.stats = self.stat_randomizer()
         
+        
+
+    def level_up(self, xp):
+        self.level += 1
+        self.xp += xp
+
+    def rand_stat_num(self):
+        stat_rand = random.randint(self.level * 2, self.level * 4)
+        return stat_rand
+  
+    def stat_randomizer(self):
+    
         stats = {
-            'hp': stat_rand,
-            'atk': stat_rand,
-            'def': stat_rand,
-            'spatk': stat_rand,
-            'spdef': stat_rand,
-            'spd': stat_rand
+            'hp': self.rand_stat_num(),
+            'atk': self.rand_stat_num(),
+            'def': self.rand_stat_num(),
+            'spatk': self.rand_stat_num(),
+            'spdef': self.rand_stat_num(),
+            'spd': self.rand_stat_num()
         }
         return stats
 

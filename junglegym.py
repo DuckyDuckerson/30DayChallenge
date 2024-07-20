@@ -44,15 +44,65 @@ else:
 percentage = random.randint(1,50)
 #attack_power * (percentage / 100)
 
+# if player_1 health <= 0: ask player to use health item in bag and check for quanitity 
+# and depending on item to heal for certain amount of health
 
 attacks  = {
-  punch : 1,
-  kick : 2,
+  1: ["Punch", 10],
+  2: ["Kick", 20],
+  3: ["Ember", 40],
+  4: ["Flamethrower", 60],
 }
-attack_choice = input("Enter your attack: ")
+attack_choice = int(input("Enter your attack: "))
 hit_chance = random.randint(1,100)
 player_1_health = 100
 player_2_health = 100
 
-if hit_chance < 50:
-  attack_choice - player_2_health
+if hit_chance > 50:
+ print(attack_choice - player_2_health) 
+else:
+  print("you missed")
+
+
+class Battle:
+  def __init__(self, player, enemy):
+    # here the enemy is an instance of the pokemon class
+    self.enemy = enemy
+    self.player = player
+    self.turn = random.choice(["player", "enemy"])
+
+  def player_turn(self):
+    pass
+    #prmpt player for action choice, give options like use move, use item, attempt to catch (disabled in trainer battles) and attempt to flee
+   #probably have a method for each action type, to keep the code a bit organized 
+
+  def enemy_turn(self):
+    move = random.choice(self.enemy.moves)
+    dmg = self.attack(move, self.player)
+    print(f"Enemy uses {move.name} for {dmg} damage")
+    self.turn = "player"
+
+  def attack(self, move, attacked_pokemon):
+    pass
+    #calculate damage bases on attacked_pokemon type and enemy move type and also stats
+    #maybe return the damage done based on stats
+
+class TrainerBattle:
+  def __init__(self, player, enemy):
+    self.player = player
+    self.enemy = enemy
+    #in the TrainerBattle class the enemy is an instance of the #Trainer class
+
+  def battle_trainer(self, player):
+    chosen_pokemon = random.choice(self.enemy.pokemon_team)
+    battle = Battle(player, chosen_pokemon)
+
+class Trainer: # for random NPCs you can battle
+  def __init__(self, name, pokemon_team):
+    self.name
+    self.pokemon_team = pokemon_team
+
+class GymTrainer(Trainer): # for Gym leaders
+  def __init__(self, name, pokemon_team, badge):
+    Trainer.__init__(self, name, pokemon_team)
+  

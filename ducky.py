@@ -23,3 +23,7 @@ pm(f'{list2}', 2, 1)
 
 list2.pop(1)
 pm(f'{list2}', 2, 1)
+
+
+
+

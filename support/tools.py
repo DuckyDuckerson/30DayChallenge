@@ -1,6 +1,4 @@
 from support.compilation import compile_c_code
-import ctypes
-import curses
 import time
 import sys
 
@@ -49,10 +47,10 @@ def printing(index, message, delay):
 
 
 def display_menu(options, menu_title="Menu"):
-    print(menu_title)
+    print_message(menu_title, 2, 1)
     print("---------------")
     for index, option in enumerate(options):
-        print(f"{index+1}. {option}")
+        print_message(f"{index+1}. {option}", 2, 1)
 
 
 # def display_menu(stdscr, options, menu_title="Menu"):
