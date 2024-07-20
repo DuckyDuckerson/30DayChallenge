@@ -13,6 +13,7 @@ class Pokemon:
         self.xp = xp
         self.initial_level = initial_level
         self.stats = PokeMetrics(self.xp, self.initial_level)
+        # PokeMetrics is not subscriptable, so we need to access the stats attribute of the PokeMetrics object to get the stats dictionary
 
 
 class PokeMetrics:
