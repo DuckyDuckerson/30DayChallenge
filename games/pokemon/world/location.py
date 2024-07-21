@@ -1,3 +1,4 @@
+from os import access
 from support.tools import display_menu, print_message
 
 class Location:
@@ -11,6 +12,7 @@ class Location:
         self.npcs = []
         self.wild_pokemon = []
         self.menu_options = ["Travel", "Where Am I?", "Who Is That?"]
+        self.events = []
 
     def main_menu(self):
         display_menu(self.menu_options)
@@ -41,7 +43,9 @@ class Location:
         if action == len(location_names) - 1:
             return
         else:
-            print_message(f"Welcome to {accessible_locations[action].name}", 2, 1)
+            if accessible_locations[action].type == 'Pokemon Center' and accessible_locations[action].name not in self.game.player.visited_locations:
+                self.game.player.visited_locations.append(accessible_locations[action])
+            print_message(f"Welcome to {accessible_locations[action].name}", 2, 1)            
             self.travel_to(accessible_locations[action])
 
     def travel_to(self, location):

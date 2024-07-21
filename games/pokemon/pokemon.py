@@ -6,7 +6,8 @@ from .data import Pokemon
 from .pokebattle import Battle
 from .entities.player import Player
 from .world.kanto import Kanto
-
+import os
+import json
 
 
 class PokemonGame:
@@ -17,11 +18,6 @@ class PokemonGame:
         self.player = None
         self.region = Kanto(self)
 
-
-    # I think we should do instead of this main_game menu here, a "main_menu" method on each of the locations, that lists the available options for that location
-    #then in game_loop we'll call self.player.current_location.main_menu()
-    #that way we can have different options depending on where you are and we can kinda separate the code out a little bit.
-    #so i'm gonna do the pokemon center class with that structure in mind, and then if/when i finish that I'll work on restructuring this file if that sounds cool with yall
     def main_game(self):
         options = ["Explore", "Pokemon Center", "Gym", "Pokedex"]
         display_menu(options, "What would you like to do next?")
@@ -76,10 +72,23 @@ class PokemonGame:
             self.playing = False
 
     def load_game(self):
-        pass
-        #write code to read data from json file and list games by "player name, location, and date and time of last save"
-        # use saved data to create self.player as an instance of the Player class with the loaded info
-        # set self.game_started = True
+        filename = 'games/pokemon/pokedata/poke_save_data.json'
+        if os.path.exists(filename):
+            with open(filename, 'r') as file:
+                data = json.load(file)
+        options = []
+        menu_options = []
+        for item in data:
+            option = [data[item]['id'], f"{data[item]["id"]} - {data[item]["name"]}"]
+            options.append(option)
+            menu_options.append(option[1])
+        display_menu(menu_options, "Saved Games", back_option=True)
+        chosen_game = int(input("Which game would you like to load?")) - 1
+        self.player = Player.load_player_data(filename, options[chosen_game][0])
+        self.game_started = True
+    
+
+    
 
     def create_character(self):
         player_name = input("Enter Your Player Name: ")
@@ -113,4 +122,4 @@ class PokemonGame:
             self.start_menu()
         else:
             #self.main_game()
-            self.player.location.main_menu() #can ignore these warnings. its yelling cuz the location is set to none initially, but by the time this code is ran, it will have been set
+            self.player.location.main_menu()

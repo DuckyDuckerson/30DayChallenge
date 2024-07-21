@@ -11,21 +11,14 @@ class Player:
         self.inventory = []
         self.bike = False
         self.team = []
+        self.visited_locations = []
         self.pokedollar = 100
         self.storage = []
         self.location = None
         self.badges = []
         self.pokedex = Pokedex()
 
-    @staticmethod #this is a decorator. I don't know exactly how they work but 
-    # you can use decorators on functions to like, modify the function behavior.
-    #in this case, we're setting it as a static method, meaning it can be called on either
-    # the class itself or an instance of the class, but it's not able to modify the class or instance directly
-    #it doesnt take "self" as an argument, because it doesnt rely on an instance of the class
-    #the @classmethod decorator is similar but it takes "cls" (for class) as the first argument instead of self
-    # it *can* modify the class, and must be called on the class itself instead of on an instance of the class
-    #gonna make a class method later on for loading the data from the json file, to create an instance of the player that has all that players saved info
-    #but i gotta figure out how itll be structured first lol we're a ways away from that
+    @staticmethod 
     def generate_new_id():
         if os.path.exists('poke_save_data.json'): #not sure if yall know about reading/writing to files in python
             # but this is how its done. can explain more when we meet tn
@@ -36,3 +29,12 @@ class Player:
             with open('poke_save_data.json', 'w') as file: 
                 json.dump([], file) #this will create it, and insert just an empty list into the file
         return 1
+
+    @classmethod
+    def load_player_data(cls, file, player_id):
+        pass
+        #load data from file
+        #use it to create an instance of the player class
+        #with the location, team, etc from the saved data
+        #create player instance
+        #return player instance

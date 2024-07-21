@@ -1,1 +1,15 @@
-[];
+{
+    
+    "one": {
+        "id": 1,
+        "name": "April"
+    },
+    "two": {
+        "id": 2,
+        "name": "Ducky"
+    },
+    "three": {
+        "id": 3,
+        "name": "Allstar"
+    }
+}

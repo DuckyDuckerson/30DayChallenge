@@ -12,18 +12,19 @@ class Battle:
     def battle(self):
         pm(f"A wild {self.enemy.name} appeared!", 2, 1)
         pm(f"Go! {self.player_pokemon.name}!", 2, 1)
-        while self.player_pokemon.stats['hp'] > 0 and self.enemy.stats['hp'] > 0:
+        while self.player_pokemon.metrics.stats['hp'] > 0 \
+            and self.enemy.stats['hp'] > 0:
             self.player_turn()
-            if self.enemy.stats['hp'] <= 0:
+            if self.enemy.metrics.stats['hp'] <= 0:
                 pm(f"{self.enemy.name} fainted!", 2, 1)
                 break
             self.enemy_turn()
-            if self.player_pokemon.stats['hp'] <= 0:
+            if self.player_pokemon.metrics.stats['hp'] <= 0:
                 pm(f"{self.player_pokemon.name} fainted!", 2, 1)
                 break
 
     def player_turn(self):
-        options = ["Fight", "Run"]
+        options = ["Fight", "Run", "Capture"]
         display_menu(options, "What will you do?")
         choice = int(input("Enter your selection: ")) - 1
         if choice == 0:
@@ -33,7 +34,7 @@ class Battle:
 
     def fight(self):
         pm(f"{self.player_pokemon.name} used Tackle!", 2, 1)
-        self.enemy.stats['hp'] -= 10
+        self.enemy.metrics.stats['hp'] -= 10
         pm(f"{self.enemy.name} took 10 damage!", 2, 1)
 
     def run(self):
@@ -41,5 +42,8 @@ class Battle:
 
     def enemy_turn(self):
         pm(f"{self.enemy.name} used Tackle!", 2, 1)
-        self.player_pokemon.stats['hp'] -= 10
+        self.player_pokemon.metrics.stats['hp'] -= 10
         pm(f"{self.player_pokemon.name} took 10 damage!", 2, 1)
+
+
+ 

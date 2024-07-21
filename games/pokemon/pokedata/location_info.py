@@ -97,5 +97,13 @@ WORLD_SETUP = {
     'Indigo Plateau': {
         'wild pokemon': [],
         'npcs': [],
-    }
-}
+    },
+    'Viridian City - Pokemon Center': {
+        'wild pokemon': [],
+        'npcs': [],
+        'items': [['Pokeball', 200],
+        ['Antidote', 100],
+        ['Paralyze Heal', 200],
+        ['Burn Heal', 250]
+        ]
+}}
