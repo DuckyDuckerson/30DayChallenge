@@ -5,10 +5,13 @@ class PokemonCenter(Location):
     def __init__(self, game, name, description, items):
         super().__init__(game, name, "Pokemon Center", description)
         self.menu_options.extend(["Shop", "Heal", "Manage Storage"])
-        if self.game.player.bike:
-            self.menu_options.append("Fast Travel")
+        if self.game.player:
+            if self.game.player.bike:
+                self.menu_options.append("Fast Travel")
         self.items = items
-
+        self.buying = False
+        self.selling = False
+    #TODO - fix bugs in the buy and sell functions
     def main_menu(self):
         display_menu(self.menu_options)
         action = int(input("What would you like to do?")) - 1
@@ -31,7 +34,25 @@ class PokemonCenter(Location):
                 self.fast_travel()
 
     def shop(self):
-        pass
+        options = ["Buy", "Sell"]
+        display_menu(options, "Welcome To Pokemart!", back_option=True)
+        choice = int(input("How can I help you? ")) - 1
+        if choice == 0:
+            available_items = []
+            for item in self.items:
+                available_items.append(item.name)
+            display_menu(available_items, "Here's what we have for sale")
+            purchase = int(input("What would you like to buy? ")) - 1
+            self.buy(self.items[purchase])
+        elif choice == 1:
+            available_items = []
+            for item in self.game.player.inventory:
+                available_items.append(self.game.player.inventory[item])
+            display_menu(available_items, "Here's what we have for sale")
+            purchase = int(input("What would you like to buy? ")) - 1
+            self.sell(self.items[purchase])
+        else:
+            return
 
     def heal(self):
         pass
@@ -41,9 +62,27 @@ class PokemonCenter(Location):
 
     def fast_travel(self):
         options = self.game.player.visited_locations
+        menu_options = []
+        for option in options:
+            menu_options.append(option.name)
+        display_menu(menu_options, "Fast Travel Locations", back_option=True)
+        choice = int(input("Where would you like to go? ")) - 1
+        self.travel_to(options[choice])
 
-    def buy(self):
-        pass
+    def buy(self, item):
+        if self.game.player.inventory[item.name]:
+            self.game.player.inventory[item.name]['amount'] += 1
+        else:
+            self.game.player.inventory[item.name] = {'item': item,
+                                                     'amount': 1}
+        self.game.player.pokedollars -= item.price
+        print(f"You have {self.game.player.pokedollars}")
+        print(f"Your inventory contains the following: {self.game.player.inventory}")
+        self.shop()
 
-    def sell(self):
-        pass
+    def sell(self, item):
+        self.game.player.inventory[item.name]['amount'] -= 1
+        self.game.player.pokedollars += item.price / 2
+        print(f"You have {self.game.player.pokedollars}")
+        print(f"Your inventory contains the following: {self.game.player.inventory}")
+        self.shop()

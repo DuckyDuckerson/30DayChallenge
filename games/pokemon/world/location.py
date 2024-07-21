@@ -43,8 +43,8 @@ class Location:
         if action == len(location_names) - 1:
             return
         else:
-            if accessible_locations[action].type == 'Pokemon Center' and accessible_locations[action].name not in self.game.player.visited_locations:
-                self.game.player.visited_locations.append(accessible_locations[action])
+            if accessible_locations[action].location_type == 'Pokemon Center' and accessible_locations[action].name not in self.game.player.visited_locations:
+                self.game.player.visited_locations.append(accessible_locations[action].name)
             print_message(f"Welcome to {accessible_locations[action].name}", 2, 1)            
             self.travel_to(accessible_locations[action])
 

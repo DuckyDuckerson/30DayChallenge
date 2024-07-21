@@ -1,3 +1,5 @@
+from games.pokemon.mechanics.item import Item
+
 kanto_towns = [
     [
         "Viridian City",
@@ -101,9 +103,9 @@ WORLD_SETUP = {
     'Viridian City - Pokemon Center': {
         'wild pokemon': [],
         'npcs': [],
-        'items': [['Pokeball', 200],
-        ['Antidote', 100],
-        ['Paralyze Heal', 200],
-        ['Burn Heal', 250]
+        'items': [Item("Pokeball", 200),
+        Item("Antidote", 100),
+        Item('Paralyze Heal', 200),
+        Item('Burn Heal', 250)
         ]
 }}

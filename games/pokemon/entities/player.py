@@ -12,7 +12,7 @@ class Player:
         self.bike = False
         self.team = []
         self.visited_locations = []
-        self.pokedollar = 100
+        self.pokedollar = 500
         self.storage = []
         self.location = None
         self.badges = []
