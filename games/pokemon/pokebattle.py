@@ -1,6 +1,8 @@
 from support.tools import display_menu
 from support.tools import print_message as pm
 
+# probably move this file into the battle dir. Added some subfolders and empty files to start getting an idea of the best way to structure this since it will be pretty big - April
+#oh hey yall dont forget to include in the options "attempt catch" or something like that. can just pass it til we figure out an inventory and pokeball system
 
 class Battle:
     def __init__(self, enemy, player_pokemon):

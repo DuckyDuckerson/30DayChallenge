@@ -87,6 +87,11 @@ class Battle:
     #calculate damage bases on attacked_pokemon type and enemy move type and also stats
     #maybe return the damage done based on stats
 
+  def battle(self):
+    pass
+    #while the player team has pokemon with health in it and the enemy is still alive, continue the battle
+    #end it when all the players pokemon have fainted or the enemy if caught or has fainted
+
 class TrainerBattle:
   def __init__(self, player, enemy):
     self.player = player
@@ -96,13 +101,8 @@ class TrainerBattle:
   def battle_trainer(self, player):
     chosen_pokemon = random.choice(self.enemy.pokemon_team)
     battle = Battle(player, chosen_pokemon)
-
-class Trainer: # for random NPCs you can battle
-  def __init__(self, name, pokemon_team):
-    self.name
-    self.pokemon_team = pokemon_team
-
-class GymTrainer(Trainer): # for Gym leaders
-  def __init__(self, name, pokemon_team, badge):
-    Trainer.__init__(self, name, pokemon_team)
-  
+    while chosen_pokemon.stats.stats["hp"] > 0:
+      battle.battle()
+    #this isnt the best way to do this, because we also need to check for the players team and have the ability to swap out pokemon when desired
+    #and then have the trainer swap out their pokemon when it faints
+    # but prolly best to worry about that when we get there. for now we can just perfect the battle itself, like against a single wild pokemon.

@@ -46,9 +46,13 @@ def printing(index, message, delay):
         printing(index + 1, message, delay)
 
 
-def display_menu(options, menu_title="Menu"):
-    print_message(menu_title, 2, 1)
+def display_menu(options, menu_title=None, back_option=False):
+    if menu_title:
+        print_message(menu_title, 2, 1)
     print("---------------")
+    if back_option:
+        options.append("Previous Menu")
+    
     for index, option in enumerate(options):
         print_message(f"{index+1}. {option}", 2, 1)
 
