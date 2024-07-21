@@ -54,7 +54,7 @@ def display_menu(options, menu_title=None, back_option=False):
         options.append("Previous Menu")
     
     for index, option in enumerate(options):
-        print_message(f"{index+1}. {option}", 2, 1)
+        print(f"{index+1}. {option}")
 
 
 # def display_menu(stdscr, options, menu_title="Menu"):

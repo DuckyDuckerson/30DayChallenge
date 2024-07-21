@@ -40,10 +40,11 @@ class PokemonCenter(Location):
         if choice == 0:
             available_items = []
             for item in self.items:
-                available_items.append(item.name)
+                available_items.append(f"{item.name} - {item.price}")
             display_menu(available_items, "Here's what we have for sale")
-            purchase = int(input("What would you like to buy? ")) - 1
-            self.buy(self.items[purchase])
+            purchase = int(input(f"You have ${self.game.player.pokedollar}. What would you like to buy? ")) - 1
+            amount = int(input("How many are you purchasing?"))
+            self.buy(self.items[purchase], amount)
         elif choice == 1:
             available_items = []
             for item in self.game.player.inventory:
@@ -69,20 +70,26 @@ class PokemonCenter(Location):
         choice = int(input("Where would you like to go? ")) - 1
         self.travel_to(options[choice])
 
-    def buy(self, item):
-        if self.game.player.inventory[item.name]:
-            self.game.player.inventory[item.name]['amount'] += 1
+    #TODO handle when pt doesnt have enough money
+    #TODO handle when inventory on_hand is full (option to buy anyway and send to storage?)
+    def buy(self, item, amount):
+        total_cost = item.price * amount
+        if self.game.player.inventory.on_hand[item.name]:
+            self.game.player.inventory.on_hand[item.name]['amount'] += amount
         else:
-            self.game.player.inventory[item.name] = {'item': item,
-                                                     'amount': 1}
-        self.game.player.pokedollars -= item.price
-        print(f"You have {self.game.player.pokedollars}")
-        print(f"Your inventory contains the following: {self.game.player.inventory}")
+            self.game.player.inventory.on_hand[item.name] = {'item': item,
+                                                     'amount': amount}
+        self.game.player.pokedollar -= total_cost
+        print(f"You have {self.game.player.pokedollar}")
+        print(f"You have the following in your inventory:")
+        for key, value in self.game.player.inventory.on_hand.items():
+            print(f"{key}: {value}")
+            
         self.shop()
 
     def sell(self, item):
-        self.game.player.inventory[item.name]['amount'] -= 1
-        self.game.player.pokedollars += item.price / 2
-        print(f"You have {self.game.player.pokedollars}")
-        print(f"Your inventory contains the following: {self.game.player.inventory}")
+        self.game.player.inventory.on_hand[item.name]['amount'] -= 1
+        self.game.player.pokedollar += item.price / 2
+        print(f"You have {self.game.player.pokedollar}")
+        print(f"Your inventory contains the following: {self.game.player.inventory.on_hand}")
         self.shop()

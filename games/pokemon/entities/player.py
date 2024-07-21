@@ -1,5 +1,6 @@
 from support.tools import display_menu
 from support.tools import print_message as pm
+from games.pokemon.mechanics.inventory import Inventory
 import os
 import json
 from games.pokemon.mechanics.pokedex import Pokedex
@@ -8,7 +9,7 @@ class Player:
     def __init__(self, name):
         self.name = name
         self.player_id = self.generate_new_id()
-        self.inventory = []
+        self.inventory = Inventory()
         self.bike = False
         self.team = []
         self.visited_locations = []
