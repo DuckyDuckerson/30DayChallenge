@@ -99,21 +99,24 @@ class PokemonGame:
 
     def select_pokemon(self):
         pm(f"Welcome {self.player.name}! Which pokemon would you like to select?", 2, 1)
-        poke_options = [opt.get("name") for opt in starters]
+        # poke_options = [opt.get("name") for opt in starters]
+        poke_options = [starter.name for starter in starters]
+        ####### changed the line above. can remove it and uncomment line 102 to undo
         display_menu(poke_options, "Starter Pokemon")
         chosen_pokemon  = int(input("Selected Pokemon: ")) - 1
 
-        starting_pokemon = None
-        for option in starters:
-            if option.get("name") == poke_options[chosen_pokemon]:
-                starting_pokemon = Pokemon(option.get("name"),
-                                           option.get("types"),
-                                           option.get("xp_type"),
-                                           option.get("evols"),
-                                           option.get("abilities"),
-                                           option.get("moves"),
-                                           option.get("xp"),
-                                           1)
+        # starting_pokemon = None
+        # for option in starters:
+        #     if option.get("name") == poke_options[chosen_pokemon]:
+        #         starting_pokemon = Pokemon(option.get("name"),
+        #                                    option.get("types"),
+        #                                    option.get("xp_type"),
+        #                                    option.get("evols"),
+        #                                    option.get("abilities"),
+        #                                    option.get("moves"),
+        #                                    option.get("xp"),
+        #                                    1)
+        starting_pokemon = starters[chosen_pokemon]
         self.player.team.append(starting_pokemon) #same warning as above
         pm(f"Welcome to {self.player.location.name}!", 2, 1)
 

@@ -1,5 +1,7 @@
 import random
 
+from games.pokemon.pokedata.all_pokemon import ALL_POKEMON
+
 
 class Pokemon:
 
@@ -43,35 +45,36 @@ class PokeMetrics:
         }
         return stats
 
-
 starter_pokemon = [
-    {
-        'name': 'Bulbasaur',
-        'types': ['grass', 'poison'],
-        'xp_type': 'Medium Slow',
-        'abilities': ['chlorophyll', 'overgrow'],
-        'moves': ['Growl', 'Tackle'],
-        'evols': ['Ivysaur'],
-        'xp': 0,
-    },
-    {
-        'name': 'Charmander',
-        'types': ['fire'],
-        'xp_type': 'Medium Slow',
-        'abilities': ['Blaze', 'Solar Power'],
-        'moves': ['Growl'],
-        'evols': ['Charmeleon'],
-        'xp': 0
-    },
-    {
-        'name': 'Squirtle',
-        'types': ['water'],
-        'xp_type': 'Medium Slow',
-        'abilities': ['Torrent', 'Rain Dish'],
-        'moves': ['Tail Whip', 'Tackle'],
-        'evols': ['Wartortle'],
-        'xp': 0,
-    }
-    ]
+    ALL_POKEMON.get("Bulbasaur")(5),
+    ALL_POKEMON.get("Charmander")(5),
+    ALL_POKEMON.get("Squirtle")(5)
+]
+# starter_pokemon = [
+#     {
+#         'name': 'Bulbasaur',
+#         'types': ['grass', 'poison'],
+#         'xp_type': 'Medium Slow',
+#         'moves': ['Growl', 'Tackle'],
+#         'evols': ['Ivysaur'],
+#         'xp': 0,
+#     },
+#     {
+#         'name': 'Charmander',
+#         'types': ['fire'],
+#         'xp_type': 'Medium Slow',
+#         'moves': ['Growl'],
+#         'evols': ['Charmeleon'],
+#         'xp': 0
+#     },
+#     {
+#         'name': 'Squirtle',
+#         'types': ['water'],
+#         'xp_type': 'Medium Slow',
+#         'moves': ['Tail Whip', 'Tackle'],
+#         'evols': ['Wartortle'],
+#         'xp': 0,
+#     }
+#     ]
 
 pokemon = []

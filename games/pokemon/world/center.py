@@ -47,10 +47,11 @@ class PokemonCenter(Location):
             self.buy(self.items[purchase], amount)
         elif choice == 1:
             available_items = []
-            for item in self.game.player.inventory:
-                available_items.append(self.game.player.inventory[item])
-            display_menu(available_items, "Here's what we have for sale")
-            purchase = int(input("What would you like to buy? ")) - 1
+            for item in self.game.player.inventory.on_hand:
+                #### FIX LINE BELOW ####
+                available_items.append(f"{item['amount']} {item['item']} - ${item.price / 2}")
+            display_menu(available_items, "Here's what is in your inventory")
+            purchase = int(input("What would you like to sell? ")) - 1
             self.sell(self.items[purchase])
         else:
             return
@@ -70,11 +71,11 @@ class PokemonCenter(Location):
         choice = int(input("Where would you like to go? ")) - 1
         self.travel_to(options[choice])
 
-    #TODO handle when pt doesnt have enough money
+    #TODO handle when player doesnt have enough money
     #TODO handle when inventory on_hand is full (option to buy anyway and send to storage?)
     def buy(self, item, amount):
         total_cost = item.price * amount
-        if self.game.player.inventory.on_hand[item.name]:
+        if self.game.player.inventory.on_hand.get(item.name):
             self.game.player.inventory.on_hand[item.name]['amount'] += amount
         else:
             self.game.player.inventory.on_hand[item.name] = {'item': item,
