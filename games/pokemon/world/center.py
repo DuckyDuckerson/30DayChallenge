@@ -24,10 +24,12 @@ class PokemonCenter(Location):
                 case 2:
                     self.view_npcs()
                 case 3:
-                    self.shop()
+                    self.save_game()
                 case 4:
-                    self.heal()
+                    self.shop()
                 case 5:
+                    self.heal()
+                case 6:
                     self.storage()
         else:
             if self.game.player.bike:

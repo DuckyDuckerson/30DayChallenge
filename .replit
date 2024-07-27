@@ -1,5 +1,5 @@
-run = "python3 main.py"
+run = "python3 -Xfrozen_modules=off main.py"
 modules = ["python-3.12", "c-clang14"]
 
 [deployment]
-run = ["sh", "-c", "python3 main.py"]
+run = ["sh", "-c", "python3 -Xfrozen_modules=off main.py"]

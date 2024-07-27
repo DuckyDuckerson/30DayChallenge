@@ -23,6 +23,8 @@ class Route(Location):
                     self.view_description()
                 case 2:
                     self.view_npcs()
+                case 3:
+                    self.save_game()
         else:
             self.explore()
 
@@ -37,10 +39,10 @@ class Route(Location):
             # self.wild_pokemon is a list of dictionaries with the structure:
                 # {
                  #'name': pokemon name
-                 # 'range': [2, 5] for example. just a list of two items
-                 # 'rate': 50 (for example. just a percentage num for the chance it appears)
+                 # 'range': [2, 5] for example. just a list of two items for the level range
+                 # 'rate': 50 (for example. just a percentage num for the chance it appears compared to the other ones in the list)
                 #}
-            #can use the encounter rate to determine what pokemon appears and what level it is
+            #can use the encounter rate to determine what pokemon appears and range to determine what level it is
             # then return that pokemon and call this function in the explore function below before the battle    
 
     def explore(self):

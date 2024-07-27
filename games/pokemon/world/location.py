@@ -1,4 +1,4 @@
-from os import access
+import json
 from support.tools import display_menu, print_message
 
 class Location:
@@ -11,7 +11,7 @@ class Location:
         self.accessible = True
         self.npcs = []
         self.wild_pokemon = []
-        self.menu_options = ["Travel", "Where Am I?", "Who Is That?"]
+        self.menu_options = ["Travel", "Where Am I?", "Who Is There?", "Save Game"]
         self.events = []
 
     def main_menu(self):
@@ -24,6 +24,8 @@ class Location:
                 self.view_description()
             case 2:
                 self.view_npcs()
+            case 3:
+                self.save_game()
 
     def view_description(self):
         print_message(f"You are in {self.name}.", 2, 1)
@@ -64,4 +66,33 @@ class Location:
                 return
             else:
                 self.npcs[action].chat()
-            #can make the chat function more complex if we wnt. like include a response option and stuff
+            #can make the chat function more complex if we wnt. like include a response option and stuff, idk
+
+    def save_game(self):
+        player_data = {
+            'name': self.game.player.name,
+            'id': self.game.player.player_id,
+            'inventory': {
+                'on_hand': [(item['item'].name, item['amount']) for item in self.game.player.inventory.on_hand.values()],
+                'storage_items': [(item['item'].name, item['amount']) for item in self.game.player.inventory.storage_items.values()],
+                'storage_pokemon': [pokemon.name for pokemon in self.game.player.inventory.storage_pokemon.values()]}, #TODO update to record pokemon details
+            'bike': self.game.player.bike,
+            'team': [(pokemon.name, pokemon.metrics.level) for pokemon in self.game.player.team], #TODO update to record pokemon details
+            'visited_locations': self.game.player.visited_locations,
+            'pokedollar': self.game.player.pokedollar,
+            'location': self.game.player.location.name,
+            'badges': self.game.player.badges, #TODO update once badge class is created
+            'pokedex': {'entries': self.game.player.pokedex.entries, #TODO will need to update this as we develop the pokedex
+                       'seen': self.game.player.pokedex.seen,
+                       'caught': self.game.player.pokedex.caught}
+        }
+        with open('games/pokemon/pokedata/poke_save_data.json', 'r') as file:
+            file_content = json.load(file)
+
+        file_content[self.game.player.player_id] = player_data
+
+        with open('games/pokemon/pokedata/poke_save_data.json', 'w') as save_file:
+            json.dump(file_content, save_file)
+        
+            
+        

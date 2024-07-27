@@ -9,7 +9,10 @@ class Kanto:
         self.game = game
         self.name = "Kanto"
         self.locations = {}
-        self.starting_location = None
+        self.starting_location = Location(self.game,
+              "Pallet Town",
+              "Town",
+              "A small, quiet town. Home to Professor Oak's laboratory.")
         self.build_kanto()
 
     #Anytime we create a new location, we need to make sure to add its data to the
@@ -17,10 +20,6 @@ class Kanto:
     #and then create it within this build world function
     #and then call connect_locations for all of its connections at the end of the build world function
     def build_kanto(self):        
-        self.starting_location = Location(self.game,
-                                      "Pallet Town",
-                                      "Town",
-                                      "A small, quiet town. Home to Professor Oak's laboratory.")
         self.locations[self.starting_location.name] = self.starting_location
 
         self.create_location("Route 1",
@@ -29,6 +28,8 @@ class Kanto:
                         terrain="Grassy", items=[])
         
         self.create_location('Viridian City - Pokemon Center', 'Pokemon Center', "The Pokemon Center within Viridian City", items=WORLD_SETUP['Viridian City - Pokemon Center']['items'])
+
+        self.create_location("Professor Oak's Laboratory", "Building", "A small, well-kept laboratory filled with Pokemon research equipment and books.")
 
        
         for town in kanto_towns:
@@ -39,6 +40,7 @@ class Kanto:
         self.connect_locations("Pallet Town", "Route 1")
         self.connect_locations("Viridian City", "Route 1")
         self.connect_locations("Viridian City - Pokemon Center", "Viridian City")
+        self.connect_locations("Pallet Town", "Professor Oak's Laboratory")
 
     def create_location(self, name, location_type, desc, **kwargs):
         if location_type == 'Route':
@@ -48,7 +50,7 @@ class Kanto:
         elif location_type == 'Pokemon Center':
             items = kwargs.get('items')
             loc = PokemonCenter(self.game, name, desc, items)
-        # elif location_type in ["Forest", 'Cave', "Pokemon Center", "Gym"]:
+        # elif location_type in ["Forest", 'Cave', "Gym"]:
         #     #will expand on each of these once those classes are created
         
         else: 
@@ -56,14 +58,13 @@ class Kanto:
 
         loc.wild_pokemon.extend(WORLD_SETUP[loc.name]['wild pokemon'])
         loc.npcs.extend(WORLD_SETUP[loc.name]['npcs'])
-        #and finally, add the location to our self.locations dictionary
         self.locations[loc.name] = loc
 
     def connect_locations(self, location1_name, location2_name):
-        #get locations from dictionary
+        
         loc1 = self.locations[location1_name]
         loc2 = self.locations[location2_name]
-        #add connections for the locations
+        
         loc1.connected_locations.append(loc2)
         loc2.connected_locations.append(loc1)
 

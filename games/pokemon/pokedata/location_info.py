@@ -108,4 +108,10 @@ WORLD_SETUP = {
         Item('Paralyze Heal', 200),
         Item('Burn Heal', 250)
         ]
-}}
+    },
+    "Professor Oak's Laboratory": {
+        'wild pokemon': [],
+        'npcs': [],
+        'items': []
+    }
+}

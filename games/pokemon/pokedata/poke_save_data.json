@@ -1,15 +1,1 @@
-{
-    
-    "one": {
-        "id": 1,
-        "name": "April"
-    },
-    "two": {
-        "id": 2,
-        "name": "Ducky"
-    },
-    "three": {
-        "id": 3,
-        "name": "Allstar"
-    }
-}
+{"1": {"name": "savetest", "id": 1, "inventory": {"on_hand": [], "storage_items": [], "storage_pokemon": []}, "bike": false, "team": [["Charmander", 5]], "visited_locations": [], "pokedollar": 500, "location": "Pallet Town", "badges": [], "pokedex": {"entries": {}, "seen": {}, "caught": {}}}}

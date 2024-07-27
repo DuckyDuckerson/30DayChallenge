@@ -71,6 +71,10 @@ class Battle:
     self.player = player
     self.turn = random.choice(["player", "enemy"])
 
+    # self.player.moveset = [list of available moves]
+    #once you have a chosen move, chosen_move.use(self.player, self.enemy)
+    #move.use will return either "miss" or the amount of damage dealt
+
   def player_turn(self):
     pass
     #prmpt player for action choice, give options like use move, use item, attempt to catch (disabled in trainer battles) and attempt to flee
@@ -106,3 +110,11 @@ class TrainerBattle:
     #this isnt the best way to do this, because we also need to check for the players team and have the ability to swap out pokemon when desired
     #and then have the trainer swap out their pokemon when it faints
     # but prolly best to worry about that when we get there. for now we can just perfect the battle itself, like against a single wild pokemon.
+
+
+
+#7/27:
+#pokemon battle to display available move in self .starter when choosing miove and use move.use against target
+# wild vs user 
+#once you have a chosen move, chosen_move.use(self.player, self.enemy)
+#move.use will return either "miss" or the amount of damage dealt`1
